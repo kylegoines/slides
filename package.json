@@ -1,0 +1,27 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "description": "for area17",
+  "main": "index.js",
+  "dependencies": {
+    
+  },
+  "devDependencies": {},
+  "scripts": {
+    "jest": "^24.9.0",
+    "node-sass": "^4.13.0",
+    "parcel-bundler": "^1.12.4",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel ./src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kylegoines@github.com/kylegoines/slides.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kylegoines/slides/issues"
+  },
+  "homepage": "https://github.com/kylegoines/slides#readme"
+}

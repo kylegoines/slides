@@ -1,0 +1,26 @@
+.slideshow{
+
+}
+
+.slideshow__slide{
+    height: 200px;   
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity .4s;
+}
+
+
+.slideshow__slide--green{
+    background: green;
+}
+
+.slideshow__slide--red{
+    background: red;
+}
+
+.slideshow__slide--blue{
+    background: blue;
+}
