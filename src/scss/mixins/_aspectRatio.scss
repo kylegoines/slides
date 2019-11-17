@@ -1,0 +1,8 @@
+@mixin aspectRatio($ratio: 1 1) {
+    $width: 100%;
+    $height: percentage(nth($ratio, 2) / nth($ratio, 1));
+    
+    width: $width;
+    height: 0;
+    padding-bottom: $height;
+  }

@@ -10,6 +10,12 @@
     opacity: 1;
     z-index: 1; }
 
+.slideshow__buttonList {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3; }
+
 .slideshow__slide--green {
   background: green; }
 

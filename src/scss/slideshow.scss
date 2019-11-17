@@ -10,11 +10,18 @@
     left: 0;
     opacity: 0;
     transition: opacity .4s;
-    // z-index: 1;
+
     &.is-active{
         opacity: 1;;
         z-index: 1;
     }
+}
+
+.slideshow__buttonList{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
 }
 
 

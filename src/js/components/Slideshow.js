@@ -3,37 +3,55 @@ class Slideshow {
     this.elem = elem
     this.slides = [...elem.querySelectorAll('div')]
     this.slideCount = this.slides.length
-    console.log(this.slides)
     this.currentIndex = 0
-    this.slides[this.currentIndex].classList.add('is-active')
+    this._setSlide(this.currentIndex)
+    this._generateDots()
   }
 
   nextSlide() {
-    this.slides[this.currentIndex].classList.remove('is-active')
+    this._unsetSlide(this.currentIndex)
     if (this.currentIndex === this.slides.length - 1) {
       this.currentIndex = 0
     } else {
       this.currentIndex = this.currentIndex + 1
     }
-    // console.log(this.slides[this.currentIndex])
-    console.log(this.currentIndex)
-    this.slides[this.currentIndex].classList.add('is-active')
+    this._setSlide(this.currentIndex)
   }
 
   prevSlide() {
-    this.slides[this.currentIndex].classList.remove('is-active')
+    this._unsetSlide(this.currentIndex)
     if (this.currentIndex === 0) {
       this.currentIndex = this.slideCount - 1
     } else {
       this.currentIndex = this.currentIndex - 1
     }
-    this.slides[this.currentIndex].classList.add('is-active')
+    this._setSlide(this.currentIndex)
   }
 
   gotoSlide(index) {
-    this.slides[this.currentIndex].classList.remove('is-active')
+    this._unsetSlide(this.currentIndex)
     this.currentIndex = index
+    this._setSlide(this.currentIndex)
+  }
+
+  _setSlide(index) {
     this.slides[this.currentIndex].classList.add('is-active')
+  }
+
+  _unsetSlide(index) {
+    this.slides[this.currentIndex].classList.remove('is-active')
+  }
+
+  _generateDots() {
+    let buttonList = '<div class="slideShow__buttonList">'
+    this.slides.forEach((slide, index) => {
+      buttonList = buttonList + '<button class="slideShow__button">dot</button>'
+    })
+    buttonList = buttonList + '</div>'
+    console.log(buttonList)
+    this.elem.insertAdjacentHTML('beforeend', buttonList)
+    const buttons = [...this.elem.querySelectorAll('.slideShow__button')]
+    buttons.forEach((elem, index) => elem.addEventListener('click', () => this.gotoSlide(index)))
   }
 }
 

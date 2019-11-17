@@ -220,30 +220,30 @@ function () {
     this.elem = elem;
     this.slides = _toConsumableArray(elem.querySelectorAll('div'));
     this.slideCount = this.slides.length;
-    console.log(this.slides);
     this.currentIndex = 0;
-    this.slides[this.currentIndex].classList.add('is-active');
+
+    this._setSlide(this.currentIndex);
+
+    this._generateDots();
   }
 
   _createClass(Slideshow, [{
     key: "nextSlide",
     value: function nextSlide() {
-      this.slides[this.currentIndex].classList.remove('is-active');
+      this._unsetSlide(this.currentIndex);
 
       if (this.currentIndex === this.slides.length - 1) {
         this.currentIndex = 0;
       } else {
         this.currentIndex = this.currentIndex + 1;
-      } // console.log(this.slides[this.currentIndex])
+      }
 
-
-      console.log(this.currentIndex);
-      this.slides[this.currentIndex].classList.add('is-active');
+      this._setSlide(this.currentIndex);
     }
   }, {
     key: "prevSlide",
     value: function prevSlide() {
-      this.slides[this.currentIndex].classList.remove('is-active');
+      this._unsetSlide(this.currentIndex);
 
       if (this.currentIndex === 0) {
         this.currentIndex = this.slideCount - 1;
@@ -251,14 +251,47 @@ function () {
         this.currentIndex = this.currentIndex - 1;
       }
 
-      this.slides[this.currentIndex].classList.add('is-active');
+      this._setSlide(this.currentIndex);
     }
   }, {
     key: "gotoSlide",
     value: function gotoSlide(index) {
-      this.slides[this.currentIndex].classList.remove('is-active');
+      this._unsetSlide(this.currentIndex);
+
       this.currentIndex = index;
+
+      this._setSlide(this.currentIndex);
+    }
+  }, {
+    key: "_setSlide",
+    value: function _setSlide(index) {
       this.slides[this.currentIndex].classList.add('is-active');
+    }
+  }, {
+    key: "_unsetSlide",
+    value: function _unsetSlide(index) {
+      this.slides[this.currentIndex].classList.remove('is-active');
+    }
+  }, {
+    key: "_generateDots",
+    value: function _generateDots() {
+      var _this = this;
+
+      var buttonList = '<div class="slideShow__buttonList">';
+      this.slides.forEach(function (slide, index) {
+        buttonList = buttonList + '<button class="slideShow__button">dot</button>';
+      });
+      buttonList = buttonList + '</div>';
+      console.log(buttonList);
+      this.elem.insertAdjacentHTML('beforeend', buttonList);
+
+      var buttons = _toConsumableArray(this.elem.querySelectorAll('.slideShow__button'));
+
+      buttons.forEach(function (elem, index) {
+        return elem.addEventListener('click', function () {
+          return _this.gotoSlide(index);
+        });
+      });
     }
   }]);
 
@@ -279,29 +312,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // hello area 17
 window.onload = function () {
   var slideshow = new _Slideshow.default(document.querySelector('.slideshow'));
-  window.slideshow = slideshow; //   setTimeout(() => {
-  //     slideshow.nextSlide()
-  //     setTimeout(() => {
-  //       slideshow.nextSlide()
-  //       setTimeout(() => {
-  //         slideshow.nextSlide()
-  //         setTimeout(() => {
-  //           slideshow.nextSlide()
-  //           setTimeout(() => {
-  //             slideshow.prevSlide()
-  //           }, 1000)
-  //         }, 1000)
-  //       }, 1000)
-  //     }, 1000)
-  //     // slideshow.nextSlide()
-  //     // slideshow.nextSlide()
-  //     // slideshow.nextSlide()
-  //     // slideshow.prevSlide()
-  //     // slideshow.prevSlide()
-  //     // slideshow.prevSlide()
-  //     // slideshow.prevSlide()
-  //     // slideshow.prevSlide()
-  //   }, 1000)
+  window.slideshow = slideshow;
 };
 },{"./../scss/main.scss":"scss/main.scss","./components/Slideshow":"js/components/Slideshow.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
