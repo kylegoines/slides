@@ -6,6 +6,7 @@ class Slideshow {
     this.currentIndex = 0
     this._setSlide(this.currentIndex)
     this._generateDots()
+    this._addArrowKeyTriggers()
   }
 
   nextSlide() {
@@ -52,6 +53,16 @@ class Slideshow {
     this.elem.insertAdjacentHTML('beforeend', buttonList)
     const buttons = [...this.elem.querySelectorAll('.slideShow__button')]
     buttons.forEach((elem, index) => elem.addEventListener('click', () => this.gotoSlide(index)))
+  }
+
+  _addArrowKeyTriggers() {
+    this.elem.onkeydown = (e) => {
+      if (e.keyCode === 37) {
+        this.prevSlide()
+      } else if (e.keyCode === 39) {
+        this.nextSlide()
+      }
+    }
   }
 }
 

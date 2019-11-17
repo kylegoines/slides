@@ -225,6 +225,8 @@ function () {
     this._setSlide(this.currentIndex);
 
     this._generateDots();
+
+    this._addArrowKeyTriggers();
   }
 
   _createClass(Slideshow, [{
@@ -292,6 +294,19 @@ function () {
           return _this.gotoSlide(index);
         });
       });
+    }
+  }, {
+    key: "_addArrowKeyTriggers",
+    value: function _addArrowKeyTriggers() {
+      var _this2 = this;
+
+      this.elem.onkeydown = function (e) {
+        if (e.keyCode === 37) {
+          _this2.prevSlide();
+        } else if (e.keyCode === 39) {
+          _this2.nextSlide();
+        }
+      };
     }
   }]);
 
