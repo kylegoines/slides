@@ -13,6 +13,7 @@ class Slideshow {
 
     this.config = { ...configDefaults, ...config }
     this.elem = elem
+    this.elem.classList.add
     this.slides = [...elem.querySelectorAll('.slideshow__slide')]
     this.slideCount = this.slides.length
     this.buttons = []
@@ -22,11 +23,9 @@ class Slideshow {
     this.isAutoPlay = true
 
     if (this.config.autoPlay) {
-      console.logA('trigger')
+      console.log('startign autoplay')
       this._initAutoPlay(this.elem)
     }
-
-    console.log(this.config)
 
     // adding slideshow modules
     this.renderComponents()
@@ -77,11 +76,15 @@ class Slideshow {
 
   _autoPlay() {
     return setInterval(() => {
+      console.log('next')
       this.nextSlide()
     }, 3000)
   }
 
   renderComponents() {
+    // for testing
+    this.elem.setAttribute('data-testid', 'slideshow')
+
     this._generateSlides()
     this._generateArrows()
 
@@ -165,6 +168,10 @@ class Slideshow {
       this.isAutoPlay = true
       this.autoPlayInterval = this._autoPlay()
     }
+  }
+
+  getConfig() {
+    return this.config
   }
 }
 

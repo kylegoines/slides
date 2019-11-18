@@ -284,6 +284,7 @@ function () {
     };
     this.config = _objectSpread({}, configDefaults, {}, config);
     this.elem = elem;
+    this.elem.classList.add;
     this.slides = _toConsumableArray(elem.querySelectorAll('.slideshow__slide'));
     this.slideCount = this.slides.length;
     this.buttons = [];
@@ -292,12 +293,11 @@ function () {
     this.isAutoPlay = true;
 
     if (this.config.autoPlay) {
-      console.logA('trigger');
+      console.log('startign autoplay');
 
       this._initAutoPlay(this.elem);
-    }
+    } // adding slideshow modules
 
-    console.log(this.config); // adding slideshow modules
 
     this.renderComponents();
 
@@ -365,12 +365,17 @@ function () {
       var _this = this;
 
       return setInterval(function () {
+        console.log('next');
+
         _this.nextSlide();
       }, 3000);
     }
   }, {
     key: "renderComponents",
     value: function renderComponents() {
+      // for testing
+      this.elem.setAttribute('data-testid', 'slideshow');
+
       this._generateSlides();
 
       this._generateArrows();
@@ -471,6 +476,11 @@ function () {
         this.autoPlayInterval = this._autoPlay();
       }
     }
+  }, {
+    key: "getConfig",
+    value: function getConfig() {
+      return this.config;
+    }
   }]);
 
   return Slideshow;
@@ -520,7 +530,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54787" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57887" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
