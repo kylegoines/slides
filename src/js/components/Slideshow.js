@@ -1,16 +1,37 @@
-// aspect ratio
+import Slide from './Slide'
+// aspect ratio -- DONE
+// arrows - DONE
 // centering of images within ratio (new class for that)
-// eventing? no
-// loop unless mouse over
+// loop unless mouse over DONE
 // add + remove extra slide ability
 class Slideshow {
-  constructor(elem) {
+  constructor(elem, config = {}) {
+    const configDefaults = {
+      autoPlay: false,
+      dots: true,
+    }
+
+    this.config = { ...configDefaults, ...config }
     this.elem = elem
-    this.slides = [...elem.querySelectorAll('div')]
+    this.slides = [...elem.querySelectorAll('.slideshow__slide')]
     this.slideCount = this.slides.length
+    this.buttons = []
     this.currentIndex = 0
+
+    this.autoPlayInterval = this.config.autoPlay ? this._autoPlay() : false
+    this.isAutoPlay = true
+
+    if (this.config.autoPlay) {
+      console.logA('trigger')
+      this._initAutoPlay(this.elem)
+    }
+
+    console.log(this.config)
+
+    // adding slideshow modules
+    this.renderComponents()
+
     this._setSlide()
-    this._generateDots()
     this._addArrowKeyTriggers()
   }
 
@@ -42,10 +63,31 @@ class Slideshow {
 
   _setSlide() {
     this.slides[this.currentIndex].classList.add('is-active')
+    if (this.config.dots) {
+      this.buttons[this.currentIndex].classList.add('is-active')
+    }
   }
 
   _unsetSlide() {
     this.slides[this.currentIndex].classList.remove('is-active')
+    if (this.config.dots) {
+      this.buttons[this.currentIndex].classList.remove('is-active')
+    }
+  }
+
+  _autoPlay() {
+    return setInterval(() => {
+      this.nextSlide()
+    }, 3000)
+  }
+
+  renderComponents() {
+    this._generateSlides()
+    this._generateArrows()
+
+    if (this.config.dots) {
+      this._generateDots()
+    }
   }
 
   _generateDots() {
@@ -55,8 +97,32 @@ class Slideshow {
     })
     buttonList = buttonList + '</div>'
     this.elem.insertAdjacentHTML('beforeend', buttonList)
-    const buttons = [...this.elem.querySelectorAll('.slideShow__button')]
-    buttons.forEach((elem, index) => elem.addEventListener('click', () => this.gotoSlide(index)))
+    this.buttons = [...this.elem.querySelectorAll('.slideShow__button')]
+    this.buttons.forEach((elem, index) => {
+      elem.addEventListener('click', () => {
+        this.gotoSlide(index)
+      })
+      if (this.config.autoPlay) {
+        this._initAutoPlay(elem)
+      }
+    })
+  }
+
+  _generateSlides() {
+    this.slides.forEach((slide) => new Slide(slide))
+  }
+
+  _generateArrows() {
+    const arrowControls = `
+    <div class="slideshow__controls">
+        <button class="slideshow__arrow slideshow__arrow--prev">Prev</button>
+        <button class="slideshow__arrow slideshow__arrow--next">next</button> 
+    </div>`
+    this.elem.insertAdjacentHTML('beforeend', arrowControls)
+    const prevArrow = this.elem.querySelector('.slideshow__arrow--prev')
+    const nextArrow = this.elem.querySelector('.slideshow__arrow--next')
+    prevArrow.addEventListener('click', () => this.prevSlide())
+    nextArrow.addEventListener('click', () => this.nextSlide())
   }
 
   _addArrowKeyTriggers() {
@@ -66,6 +132,38 @@ class Slideshow {
       } else if (e.keyCode === 39) {
         this.nextSlide()
       }
+    }
+  }
+
+  _initAutoPlay(elem) {
+    elem.addEventListener('mouseenter', () => {
+      this._cancelAutoPlay()
+    })
+
+    elem.addEventListener('focus', () => {
+      this._cancelAutoPlay()
+    })
+
+    elem.addEventListener('blur', (e) => {
+      this._resumeAutoPlay()
+    })
+
+    elem.addEventListener('mouseleave', () => {
+      this._resumeAutoPlay()
+    })
+  }
+
+  _cancelAutoPlay() {
+    if (this.isAutoPlay) {
+      this.isAutoPlay = false
+      clearInterval(this.autoPlayInterval)
+    }
+  }
+
+  _resumeAutoPlay() {
+    if (!this.isAutoPlay) {
+      this.isAutoPlay = true
+      this.autoPlayInterval = this._autoPlay()
     }
   }
 }

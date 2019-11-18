@@ -1,8 +1,18 @@
-@mixin aspectRatio($ratio: 1 1) {
-    $width: 100%;
-    $height: percentage(nth($ratio, 2) / nth($ratio, 1));
-    
-    width: $width;
-    height: 0;
-    padding-bottom: $height;
-  }
+@mixin aspectRatio($width, $height) {
+    position: relative;
+    height: auto;
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: ($height / $width) * 100%;
+    }
+    & > * {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+}
