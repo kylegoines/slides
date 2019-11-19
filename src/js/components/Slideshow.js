@@ -1,11 +1,9 @@
 import Slide from './Slide'
-// aspect ratio -- DONE
-// arrows - DONE
-// centering of images within ratio (new class for that)
-// loop unless mouse over DONE
-// add + remove extra slide ability
-class Slideshow {
+import ProtoComponent from './ProtoComponent'
+
+class Slideshow extends ProtoComponent {
   constructor(elem, config = {}) {
+    super()
     const configDefaults = {
       autoPlay: false,
       dots: true,
@@ -23,7 +21,6 @@ class Slideshow {
     this.isAutoPlay = true
 
     if (this.config.autoPlay) {
-      console.log('startign autoplay')
       this._initAutoPlay(this.elem)
     }
 
@@ -42,6 +39,7 @@ class Slideshow {
       this.currentIndex = this.currentIndex + 1
     }
     this._setSlide()
+    super.dispatch('onNextSlide', { currentIndex: this.currentIndex, elem: this.slides[this.currentIndex] })
   }
 
   prevSlide() {
@@ -52,12 +50,14 @@ class Slideshow {
       this.currentIndex = this.currentIndex - 1
     }
     this._setSlide()
+    super.dispatch('onPrevSlide', { currentIndex: this.currentIndex, elem: this.slides[this.currentIndex] })
   }
 
   gotoSlide(index) {
     this._unsetSlide()
     this.currentIndex = index
     this._setSlide()
+    super.dispatch('onGoToSlide', { currentIndex: this.currentIndex, elem: this.slides[this.currentIndex] })
   }
 
   _setSlide() {
@@ -76,7 +76,6 @@ class Slideshow {
 
   _autoPlay() {
     return setInterval(() => {
-      console.log('next')
       this.nextSlide()
     }, 3000)
   }
