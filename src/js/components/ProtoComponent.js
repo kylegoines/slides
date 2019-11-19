@@ -30,8 +30,6 @@ class ProtoComponent {
   }
 }
 
-export default ProtoComponent
-
 class DispatcherEvent {
   constructor(eventName) {
     this.eventName = eventName
@@ -56,3 +54,5 @@ class DispatcherEvent {
     })
   }
 }
+
+export default ProtoComponent
