@@ -1,0 +1,13 @@
+$default-breakpoint: root;
+$current-breakpoint: $default-breakpoint;
+
+$breakpoints: (
+    'small': 500px,
+    'medium': 960px,
+    'large': 980px,
+);
+
+$breakpoint-directions: (
+    "min": "min-width",
+    "max": "max-width"
+);

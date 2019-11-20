@@ -233,6 +233,107 @@ function () {
 
 var _default = Slide;
 exports.default = _default;
+},{}],"js/components/ProtoComponent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ProtoComponent =
+/*#__PURE__*/
+function () {
+  function ProtoComponent() {
+    _classCallCheck(this, ProtoComponent);
+
+    this.events = {};
+  }
+
+  _createClass(ProtoComponent, [{
+    key: "dispatch",
+    value: function dispatch(eventName, data) {
+      var event = this.events[eventName];
+
+      if (event) {
+        event.fire(data);
+      }
+    }
+  }, {
+    key: "on",
+    value: function on(eventName, callback) {
+      var event = this.events[eventName];
+
+      if (!event) {
+        event = new DispatcherEvent(eventName);
+        this.events[eventName] = event;
+      }
+
+      event.registerCallback(callback);
+    }
+  }, {
+    key: "off",
+    value: function off(eventName, callback) {
+      var event = this.events[eventName];
+
+      if (event && event.callbacks.indexOf(callback) > -1) {
+        event.unregisterCallback(callback);
+
+        if (event.callbacks.length === 0) {
+          delete this.events[eventName];
+        }
+      }
+    }
+  }]);
+
+  return ProtoComponent;
+}();
+
+var DispatcherEvent =
+/*#__PURE__*/
+function () {
+  function DispatcherEvent(eventName) {
+    _classCallCheck(this, DispatcherEvent);
+
+    this.eventName = eventName;
+    this.callbacks = [];
+  }
+
+  _createClass(DispatcherEvent, [{
+    key: "registerCallback",
+    value: function registerCallback(callback) {
+      this.callbacks.push(callback);
+    }
+  }, {
+    key: "unregisterCallback",
+    value: function unregisterCallback(callback) {
+      var index = this.callbacks.indexOf(callback);
+
+      if (index > -1) {
+        this.callbacks.splice(index, 1);
+      }
+    }
+  }, {
+    key: "fire",
+    value: function fire(data) {
+      var callbacks = this.callbacks.slice(0);
+      callbacks.forEach(function (callback) {
+        callback(data);
+      });
+    }
+  }]);
+
+  return DispatcherEvent;
+}();
+
+var _default = ProtoComponent;
+exports.default = _default;
 },{}],"js/components/Slideshow.js":[function(require,module,exports) {
 "use strict";
 
@@ -243,7 +344,11 @@ exports.default = void 0;
 
 var _Slide = _interopRequireDefault(require("./Slide"));
 
+var _ProtoComponent2 = _interopRequireDefault(require("./ProtoComponent"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -265,45 +370,59 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// aspect ratio -- DONE
-// arrows - DONE
-// centering of images within ratio (new class for that)
-// loop unless mouse over DONE
-// add + remove extra slide ability
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 var Slideshow =
 /*#__PURE__*/
-function () {
+function (_ProtoComponent) {
+  _inherits(Slideshow, _ProtoComponent);
+
   function Slideshow(elem) {
+    var _this;
+
     var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     _classCallCheck(this, Slideshow);
 
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Slideshow).call(this));
     var configDefaults = {
       autoPlay: false,
       dots: true
     };
-    this.config = _objectSpread({}, configDefaults, {}, config);
-    this.elem = elem;
-    this.elem.classList.add;
-    this.slides = _toConsumableArray(elem.querySelectorAll('.slideshow__slide'));
-    this.slideCount = this.slides.length;
-    this.buttons = [];
-    this.currentIndex = 0;
-    this.autoPlayInterval = this.config.autoPlay ? this._autoPlay() : false;
-    this.isAutoPlay = true;
+    _this.config = _objectSpread({}, configDefaults, {}, config);
+    _this.elem = elem;
+    _this.elem.classList.add;
+    _this.slides = _toConsumableArray(elem.querySelectorAll('.slideshow__slide'));
+    _this.slideCount = _this.slides.length;
+    _this.buttons = [];
+    _this.currentIndex = 0;
+    _this.autoPlayInterval = _this.config.autoPlay ? _this._autoPlay() : false;
+    _this.isAutoPlay = true;
 
-    if (this.config.autoPlay) {
-      console.log('startign autoplay');
-
-      this._initAutoPlay(this.elem);
+    if (_this.config.autoPlay) {
+      _this._initAutoPlay(_this.elem);
     } // adding slideshow modules
 
 
-    this.renderComponents();
+    _this.renderComponents();
 
-    this._setSlide();
+    _this._setSlide();
 
-    this._addArrowKeyTriggers();
+    _this._addArrowKeyTriggers();
+
+    return _this;
   }
 
   _createClass(Slideshow, [{
@@ -318,6 +437,11 @@ function () {
       }
 
       this._setSlide();
+
+      _get(_getPrototypeOf(Slideshow.prototype), "dispatch", this).call(this, 'onNextSlide', {
+        currentIndex: this.currentIndex,
+        elem: this.slides[this.currentIndex]
+      });
     }
   }, {
     key: "prevSlide",
@@ -331,6 +455,11 @@ function () {
       }
 
       this._setSlide();
+
+      _get(_getPrototypeOf(Slideshow.prototype), "dispatch", this).call(this, 'onPrevSlide', {
+        currentIndex: this.currentIndex,
+        elem: this.slides[this.currentIndex]
+      });
     }
   }, {
     key: "gotoSlide",
@@ -340,6 +469,11 @@ function () {
       this.currentIndex = index;
 
       this._setSlide();
+
+      _get(_getPrototypeOf(Slideshow.prototype), "dispatch", this).call(this, 'onGoToSlide', {
+        currentIndex: this.currentIndex,
+        elem: this.slides[this.currentIndex]
+      });
     }
   }, {
     key: "_setSlide",
@@ -362,12 +496,10 @@ function () {
   }, {
     key: "_autoPlay",
     value: function _autoPlay() {
-      var _this = this;
+      var _this2 = this;
 
       return setInterval(function () {
-        console.log('next');
-
-        _this.nextSlide();
+        _this2.nextSlide();
       }, 3000);
     }
   }, {
@@ -387,7 +519,7 @@ function () {
   }, {
     key: "_generateDots",
     value: function _generateDots() {
-      var _this2 = this;
+      var _this3 = this;
 
       var buttonList = '<div class="slideShow__buttonList">';
       this.slides.forEach(function () {
@@ -398,11 +530,11 @@ function () {
       this.buttons = _toConsumableArray(this.elem.querySelectorAll('.slideShow__button'));
       this.buttons.forEach(function (elem, index) {
         elem.addEventListener('click', function () {
-          _this2.gotoSlide(index);
+          _this3.gotoSlide(index);
         });
 
-        if (_this2.config.autoPlay) {
-          _this2._initAutoPlay(elem);
+        if (_this3.config.autoPlay) {
+          _this3._initAutoPlay(elem);
         }
       });
     }
@@ -416,48 +548,48 @@ function () {
   }, {
     key: "_generateArrows",
     value: function _generateArrows() {
-      var _this3 = this;
+      var _this4 = this;
 
       var arrowControls = "\n    <div class=\"slideshow__controls\">\n        <button class=\"slideshow__arrow slideshow__arrow--prev\">Prev</button>\n        <button class=\"slideshow__arrow slideshow__arrow--next\">next</button> \n    </div>";
       this.elem.insertAdjacentHTML('beforeend', arrowControls);
       var prevArrow = this.elem.querySelector('.slideshow__arrow--prev');
       var nextArrow = this.elem.querySelector('.slideshow__arrow--next');
       prevArrow.addEventListener('click', function () {
-        return _this3.prevSlide();
+        return _this4.prevSlide();
       });
       nextArrow.addEventListener('click', function () {
-        return _this3.nextSlide();
+        return _this4.nextSlide();
       });
     }
   }, {
     key: "_addArrowKeyTriggers",
     value: function _addArrowKeyTriggers() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.elem.onkeydown = function (e) {
         if (e.keyCode === 37) {
-          _this4.prevSlide();
+          _this5.prevSlide();
         } else if (e.keyCode === 39) {
-          _this4.nextSlide();
+          _this5.nextSlide();
         }
       };
     }
   }, {
     key: "_initAutoPlay",
     value: function _initAutoPlay(elem) {
-      var _this5 = this;
+      var _this6 = this;
 
       elem.addEventListener('mouseenter', function () {
-        _this5._cancelAutoPlay();
+        _this6._cancelAutoPlay();
       });
       elem.addEventListener('focus', function () {
-        _this5._cancelAutoPlay();
+        _this6._cancelAutoPlay();
       });
       elem.addEventListener('blur', function (e) {
-        _this5._resumeAutoPlay();
+        _this6._resumeAutoPlay();
       });
       elem.addEventListener('mouseleave', function () {
-        _this5._resumeAutoPlay();
+        _this6._resumeAutoPlay();
       });
     }
   }, {
@@ -484,11 +616,11 @@ function () {
   }]);
 
   return Slideshow;
-}();
+}(_ProtoComponent2.default);
 
 var _default = Slideshow;
 exports.default = _default;
-},{"./Slide":"js/components/Slide.js"}],"js/index.js":[function(require,module,exports) {
+},{"./Slide":"js/components/Slide.js","./ProtoComponent":"js/components/ProtoComponent.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 require("./../scss/main.scss");
@@ -530,7 +662,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57887" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65465" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

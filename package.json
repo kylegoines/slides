@@ -18,7 +18,8 @@
   },
   "scripts": {
     "test": "jest --watch",
-    "dev": "parcel ./src/index.html"
+    "dev": "parcel ./src/index.html",
+    "dev2": "parcel ./src/ui.html"
   },
   "repository": {
     "type": "git",

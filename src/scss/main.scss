@@ -1,2 +1,9 @@
+@import './variables/_variables';
 @import './mixins/_mixins';
+
+@import './global/_global';
+@import './page/_page';
+@import './components/_components';
+
+// for slideshow UI
 @import './slideshow'

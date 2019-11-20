@@ -1,0 +1,33 @@
+@mixin breakpoint($breakpoint, $type: min) {
+	// Get the width from the keyword `$breakpoint`
+	// Or `null` if the keyword doesn't exist in `$breakpoints` map
+	$value: map-get($breakpoints, $breakpoint);
+	$direction: map-get($breakpoint-directions, $type);
+
+	// If `$breakpoint` exists as a key in `$breakpoints`
+	@if $value != null {
+
+		// If '$type' exists as a key in '$breakpoint-directions'
+		@if $direction != null {
+			// Update `$current-breakpoint`
+			$current-breakpoint: $breakpoint !global;
+			// Open a media query block
+			@media (#{$direction}: $value) {
+				// Let the user dump content
+				@content;
+			}
+			// Then reset `$current-breakpoint` to `$default-breakpoint` (root)
+			$current-breakpoint: $default-breakpoint !global;
+		}
+		@else {
+			@warn "Invalid breakpoint direction `#{$type}`.";
+		}
+	}
+
+		// If `$breakpoint` doesn't exist in `$breakpoints`,
+		// Warn the user and do nothing
+	@else {
+		@warn "Invalid breakpoint `#{$breakpoint}`.";
+	}
+}
+    
