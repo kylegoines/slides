@@ -1,6 +1,5 @@
 import './../scss/main.scss'
 import Slideshow from './components/Slideshow'
-import React from 'react'
 import renderHelper from './components/helperRender'
 
 // hello area 17
@@ -11,7 +10,8 @@ window.onload = () => {
     window.slideshow = slideshow
   }
 
-  document.querySelector('.renderHelper').innerHTML = renderHelper()
-
-  console.log(thing)
+  const renderHelper = document.querySelector('.renderHelper')
+  if (renderHelper) {
+    renderHelper.innerHTML = renderHelper()
+  }
 }
