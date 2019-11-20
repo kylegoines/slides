@@ -3,7 +3,25 @@ article {
     @include aspectRatio(3,2);
     background: pink;
     border: 1px solid red;
+    position: relative;
     &:nth-child(even) {
         background:#eee;
+    }
+}
+
+.article__info{
+    background:#eee;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.article__byline{
+    height: 50px;
+    background: pink;
+    
+    span, p{
+        padding-bottom: 0;
+        font-size: 14px;
     }
 }
