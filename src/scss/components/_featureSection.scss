@@ -1,0 +1,39 @@
+.featureSection {
+    width: 100%;
+    @include breakpoint('large') {
+        display: flex;
+        background: yellow;
+        flex-wrap: wrap;
+        margin: 0 -2.5px;
+    }
+    
+
+    article{
+        @include breakpoint('large') {
+            margin: 0 2.5px 5px;
+        }        
+
+        &.feature{
+            @include breakpoint('large') {
+                &:before{
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+}
+
+.featureSection__featured {
+    @include breakpoint('large') {
+        display: flex;
+        width: 50%;
+    }
+}
+
+.featureSection__aside {
+    @include breakpoint('large') {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    }
+}

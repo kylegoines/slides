@@ -1,9 +1,31 @@
+.aria-hidden {
+  clip-path: inset(100%);
+  clip: rect(1px 1px 1px 1px);
+  /* IE 6/7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  /* added line */
+  width: 1px; }
+
+* {
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif; }
+
 html {
   box-sizing: border-box; }
 
 html, body {
   padding: 0;
   margin: 0; }
+
+section {
+  width: 100%; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
@@ -28,23 +50,30 @@ aside {
       margin-left: 60px;
       width: calc(30% - 60px); } }
 
-.featureSection {
-  width: 100%; }
-  @media (min-width: 980px) {
-    .featureSection {
-      display: flex;
-      background: yellow;
-      flex-wrap: wrap;
-      margin: 0 -2.5px; } }
-  @media (min-width: 980px) {
-    .featureSection article {
-      margin: 0 2.5px 5px; } }
+.adSpace {
+  position: relative;
+  height: auto; }
+  .adSpace:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 83.33333%; }
+  .adSpace > * {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; }
+  .adSpace img {
+    width: 100%; }
 
 article {
   width: 100%;
   position: relative;
   height: auto;
-  background: pink; }
+  background: pink;
+  border: 1px solid red; }
   article:before {
     display: block;
     content: "";
@@ -59,6 +88,21 @@ article {
     bottom: 0; }
   article:nth-child(even) {
     background: #eee; }
+
+.featureSection {
+  width: 100%; }
+  @media (min-width: 980px) {
+    .featureSection {
+      display: flex;
+      background: yellow;
+      flex-wrap: wrap;
+      margin: 0 -2.5px; } }
+  @media (min-width: 980px) {
+    .featureSection article {
+      margin: 0 2.5px 5px; } }
+  @media (min-width: 980px) {
+    .featureSection article.feature:before {
+      padding-top: 0; } }
 
 @media (min-width: 980px) {
   .featureSection__featured {

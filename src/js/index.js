@@ -3,6 +3,9 @@ import Slideshow from './components/Slideshow'
 
 // hello area 17
 window.onload = () => {
-  const slideshow = new Slideshow(document.querySelector('.slideshow'))
-  window.slideshow = slideshow
+  const elem = document.querySelector('.slideshow')
+  if (slideshow.length > 0) {
+    const slideshow = new Slideshow(elem)
+    window.slideshow = slideshow
+  }
 }

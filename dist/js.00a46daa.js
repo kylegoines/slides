@@ -631,8 +631,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // hello area 17
 window.onload = function () {
-  var slideshow = new _Slideshow.default(document.querySelector('.slideshow'));
-  window.slideshow = slideshow;
+  var elem = document.querySelector('.slideshow');
+
+  if (slideshow.length > 0) {
+    var _slideshow = new _Slideshow.default(elem);
+
+    window.slideshow = _slideshow;
+  }
 };
 },{"./../scss/main.scss":"scss/main.scss","./components/Slideshow":"js/components/Slideshow.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -662,7 +667,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65465" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56432" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

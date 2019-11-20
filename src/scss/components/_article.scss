@@ -1,0 +1,9 @@
+article {
+    width: 100%;
+    @include aspectRatio(3,2);
+    background: pink;
+    border: 1px solid red;
+    &:nth-child(even) {
+        background:#eee;
+    }
+}

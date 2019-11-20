@@ -1,0 +1,6 @@
+.adSpace {
+    @include aspectRatio(300, 250);
+    img{
+        width: 100%;
+    }
+}
