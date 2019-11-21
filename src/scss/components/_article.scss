@@ -14,21 +14,6 @@ article {
         }
     }
 
-    h3 {
-        
-        width: 100%;
-        font-size: 24px;
-        line-height: 26px;
-        @include breakpoint('large'){
-            width: calc(100% - 60px);
-            font-size: 21px;
-            line-height: 25px;    
-        }
-        a{
-            font-family: 'Roboto Slab', serif;
-        }
-    }
-
     a {
         color: black;
         @include breakpoint('large'){
@@ -37,16 +22,17 @@ article {
     }
 }
 
-.articleList{
+
+.article__title{
+    width: 100%;
+    @include title;
     @include breakpoint('large'){
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        article {
-            width: calc(50% - 2.5px);
-        }
+        width: calc(100% - 60px);
+
     }
-    
+    a{
+        font-family: 'Roboto Slab', serif;
+    }
 }
 
 .article__image{
@@ -62,7 +48,7 @@ article {
     align-items: center;
 }
 
-.byline__author{
+.authorInfo__avatar{
     margin-right: 15px;;
     height: 40px;
     width: 40px;
@@ -81,7 +67,7 @@ article {
     }
 }
 
-.article__title{
+.article__heading{
     margin-bottom: 15px;;
     z-index: 2;;
     position: relative;
@@ -118,27 +104,25 @@ article {
 }
 
 .article__byline{
+    @include text;
     height: 50px;
     z-index: 1;
     position: relative;
-    font-size: 13px;
-    line-height: 18px;
     @include breakpoint('large'){
         padding-right: 40px;
-        font-size: 17px;
-        line-height: 20px;
     }
     
     span, p{
-        // color: white;
         padding-bottom: 0;
-        font-size: 14px;
+        @include text;
     }
 }
 
 
-.byline__name{
+.authorInfo__name{
+    font-weight: 300;
     a{
+        line-height: 1;
         color: rgba(grey, 10%);
         @include breakpoint('large'){
             color: white
@@ -149,7 +133,7 @@ article {
     }
 }
 
-.byline__title{
+.byline__title, .authorInfo__title{
     color: rgba(grey, 10%);
         @include breakpoint('large'){
         color: white
@@ -193,5 +177,23 @@ article {
         path{
             fill: red !important;
         }
+    }
+}
+
+.article__imageContainer{
+    @include aspectRatio(4,2.5);
+    @include breakpoint('large'){
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.shareText{
+    color: rgba(grey, 10%);
+    @include breakpoint('large'){
+        display: none;
     }
 }

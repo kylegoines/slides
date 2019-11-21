@@ -3,24 +3,17 @@
     margin: 0 auto;
     padding: 0 30px;
 
-    
 
     @include breakpoint('large'){
         width: 100%
     }
 
-
     @include breakpoint('desktop'){
         display: flex;
     }
 
-
-
-
-    // @include breakpoint('large'){
-        
-    //     width: 100%;
-    //     // padding: 0;
-    // }
+    @include breakpoint('max'){
+        padding: 0;
+    }
     
 }

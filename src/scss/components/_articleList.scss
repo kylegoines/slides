@@ -1,0 +1,10 @@
+.articleList{
+    @include breakpoint('large'){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        article {
+            width: calc(50% - 2.5px);
+        }
+    }
+}

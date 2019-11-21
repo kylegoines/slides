@@ -20,6 +20,6 @@ section{
 a{
     text-decoration: none;
     &:hover{
-        color: red;
+        color: red !important;
     }
 }

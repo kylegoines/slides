@@ -1,0 +1,112 @@
+.relatedArticles{
+    h4{
+        color: red;
+        font-size: 20px;
+        line-height: 22px;
+        text-align: center;
+        border-top: 4px solid red;
+        padding: 20px 0;
+        font-weight: 700;
+        span{
+            font-family: 'Roboto Slab', serif;
+            @include breakpoint('large'){
+                display: none;
+            }
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    article{
+        display: flex;
+        padding: 15px 0;
+        height: auto;
+        flex-wrap: wrap;
+        width: 100%;
+        border-top: 1px solid rgba(grey, .5);
+        &:before{
+            padding: 0;
+        }
+
+        @include breakpoint('large'){
+            display: block;
+        } 
+        
+        .article__info {
+            width: 50%;
+            transform: translateY(0);
+            position: relative;
+            @include breakpoint('large'){
+                width: 100%;
+            }
+        }
+    }
+
+    .article__title{     
+        width: 100%;
+        @include titleSmall;
+        a{
+            color: black;
+        }
+    }
+
+    .article__info{
+        margin-top: 0;
+        padding: 0px;
+    }
+
+    .authorInfo__title, .authorInfo__name a{
+        color: rgba(grey, 10%);
+        
+            
+    }
+
+    .authorInfo__name a{
+        &:hover{
+            color: red;
+        }
+    }
+
+
+    .article__info{
+        background: none;
+    }
+
+
+    .authorInfo__avatar{
+        display: none;
+        @include breakpoint('large'){
+            display: block;
+        }
+    }
+
+    .article__imageContainer{
+        width: calc(50% - 15px);
+        margin-right: 15px;
+        @include aspectRatio(3,2);
+        @include breakpoint('large'){
+            display: none;
+        }
+    }
+
+    .article__share{
+        display: none;
+        @include breakpoint('large'){
+            display: block;
+            bottom: -60px;
+            top: auto;
+            path{
+                fill: grey;;
+            }
+        }
+    }
+}

@@ -14,10 +14,37 @@ p{
     padding-bottom: 15px;
 }
 
-h1{
 
+@mixin featuredTitle {
+    @include breakpoint('large'){
+        font-size: 30px;
+        line-height: 32px;
+    }
 }
 
-h3{
+@mixin title {
+    font-size: 24px;
+    line-height: 26px;
+    @include breakpoint('large'){
+        font-size: 21px;
+        line-height: 25px;
+    }
+}
 
+@mixin text {
+    font-size: 13px;
+    line-height: 28px;
+    @include breakpoint('large'){
+        font-size: 17px;
+        line-height: 20px;
+    }
+}
+
+@mixin titleSmall {
+    font-size: 18px;
+    line-height: 22px;
+    @include breakpoint('large'){
+        font-size: 19px;
+        line-height: 23px;
+    }
 }
