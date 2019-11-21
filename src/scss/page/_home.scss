@@ -1,5 +1,8 @@
 main {
-    @include breakpoint('large') { 
+    @include breakpoint('large'){
+        width: 100%
+    }
+    @include breakpoint('desktop') { 
         width: 70%;
         display: flex;
 
@@ -7,8 +10,11 @@ main {
 }
 
 aside{
-    background: pink;
-    @include breakpoint('large') {
+    @include breakpoint('large'){
+        width: 100%
+    }
+
+    @include breakpoint('desktop') {
         margin-left: $spacing-gutter;
         width: calc(30% - 60px);
 

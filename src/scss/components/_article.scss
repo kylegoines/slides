@@ -24,6 +24,9 @@ article {
             font-size: 21px;
             line-height: 25px;    
         }
+        a{
+            font-family: 'Roboto Slab', serif;
+        }
     }
 
     a {
@@ -112,6 +115,7 @@ article {
     font-size: 13px;
     line-height: 18px;
     @include breakpoint('large'){
+        padding-right: 40px;
         font-size: 17px;
         line-height: 20px;
     }
@@ -126,15 +130,18 @@ article {
 
 .byline__name{
     a{
-        color: black;
+        color: rgba(grey, 10%);
         @include breakpoint('large'){
             color: white
+        }
+        &:hover{
+            color: red;
         }
     }
 }
 
 .byline__title{
-    color: black;
+    color: rgba(grey, 10%);
         @include breakpoint('large'){
         color: white
     }
@@ -142,24 +149,32 @@ article {
 
 
 .article__share {
-    height: 53px;
-    width: 50px;
+    display: flex;
+    align-items: center;
     position: absolute;
     z-index: 2;
-    bottom: -67px;
-    
+    bottom: -60px;
     right: 0;
     cursor: pointer;
 
     @include breakpoint('large'){
         position: absolute;
         top: -11px;
+        bottom: auto;
     }
     
     svg{
-        width: 100%;
+        position: relative;
+        top: 4px;
+        height: 40px;
+        width: 40px;
+        @include breakpoint('large'){
+            top: 10px;
+        }
+        
     }
     path{
+        fill: rgba(grey, 10%);
         @include breakpoint('large'){
             fill: white;
         }

@@ -3,8 +3,9 @@ $current-breakpoint: $default-breakpoint;
 
 $breakpoints: (
     'small': 500px,
-    'medium': 960px,
-    'large': 980px,
+    'large': 790px,
+    'desktop': 1000px,
+    'max': 1200px,
 );
 
 $breakpoint-directions: (
