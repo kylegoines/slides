@@ -9,24 +9,33 @@
     article{
         @include breakpoint('large') {
             margin: 0 2.5px 5px;
-        }        
-
-        &.feature{
-            @include breakpoint('large') {
-                &:before{
-                    padding-top: 0;
+            &.feature{
+                @include breakpoint('large') {
+                    &:before{
+                        padding-top: 0;
+                    }
+                }
+    
+                .article__share{
+                    top: auto;
+                    bottom: -67px;
+                    z-index: 4;
+                }
+    
+                h3{
+                    font-size: 30px;
+                    line-height: 32px;
+                }
+    
+                .article__byline{
+                    z-index: 1;
+                }
+    
+                .article__info{
+                    transform: translateY(0);
                 }
             }
-
-            h3{
-                font-size: 30px;
-                line-height: 32px;
-            }
-
-            .article__info{
-                transform: translateY(0);
-            }
-        }
+        }        
     }
 }
 

@@ -15,9 +15,12 @@ article {
     }
 
     h3 {
+        
+        width: 100%;
         font-size: 24px;
         line-height: 26px;
         @include breakpoint('large'){
+            width: calc(100% - 60px);
             font-size: 21px;
             line-height: 25px;    
         }
@@ -70,6 +73,9 @@ article {
     margin-bottom: 15px;;
     z-index: 2;;
     position: relative;
+    @include breakpoint('large'){
+        display: flex;
+    }
 }
 
 .article__info {
@@ -101,7 +107,7 @@ article {
 
 .article__byline{
     height: 50px;
-    z-index: 2;;
+    z-index: 1;
     position: relative;
     font-size: 13px;
     line-height: 18px;
@@ -131,5 +137,37 @@ article {
     color: black;
         @include breakpoint('large'){
         color: white
+    }
+}
+
+
+.article__share {
+    height: 53px;
+    width: 50px;
+    position: absolute;
+    z-index: 2;
+    bottom: -67px;
+    
+    right: 0;
+    cursor: pointer;
+
+    @include breakpoint('large'){
+        position: absolute;
+        top: -11px;
+    }
+    
+    svg{
+        width: 100%;
+    }
+    path{
+        @include breakpoint('large'){
+            fill: white;
+        }
+    }
+
+    &:hover{
+        path{
+            fill: red !important;
+        }
     }
 }
