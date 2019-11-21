@@ -87,8 +87,7 @@ article {
         position: absolute;
         bottom: 0px;
         width: 100%;
-        transition: .3s transform;
-        transform: translateY(60px);
+        
         &:before{
             content: '';
             width: 100%;
@@ -100,6 +99,11 @@ article {
             box-shadow: inset 0 0 0 200px rgba(255,255,255,0.05);
             filter: blur(10px);
         }
+    }
+
+    @include breakpoint('desktop'){
+        transition: .3s transform;
+        transform: translateY(60px);
     }
 }
 
