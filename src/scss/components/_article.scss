@@ -70,6 +70,15 @@ article {
     border-radius: 100%;
     z-index: 2;;
     position: relative;
+    overflow: hidden;
+    img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .article__title{

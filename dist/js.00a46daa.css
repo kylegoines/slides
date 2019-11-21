@@ -156,7 +156,15 @@ article {
   background: black;
   border-radius: 100%;
   z-index: 2;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
+  .byline__author img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%; }
 
 .article__title {
   margin-bottom: 15px;
