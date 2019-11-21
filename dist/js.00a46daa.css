@@ -455,7 +455,7 @@ article {
     display: block;
     content: "";
     width: 100%;
-    padding-top: 33.33333%; }
+    padding-top: 50%; }
   .slideshow__slides > * {
     display: block;
     position: absolute;
@@ -473,11 +473,16 @@ article {
   opacity: 0;
   transition: opacity .4s;
   background: black; }
-  .slideshow__slide.is-landscape img {
+  .slideshow__slide img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  .slideshow__slide.is-portrait img {
     height: 100%;
-    width: auto;
-    margin: 0 auto;
-    display: block; }
+    width: auto; }
+  .slideshow__slide.is-landscape img {
+    width: 100%; }
   .slideshow__slide.is-active {
     opacity: 1;
     z-index: 1; }

@@ -210,7 +210,7 @@ function () {
     _classCallCheck(this, Slide);
 
     this.elem = elem;
-    var rect = this.elem.getBoundingClientRect();
+    var rect = this.elem.querySelector('img').getBoundingClientRect();
     console.log(rect);
     this.height = rect.height;
     this.width = rect.width;

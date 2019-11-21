@@ -1,7 +1,7 @@
 class Slide {
   constructor(elem) {
     this.elem = elem
-    const rect = this.elem.getBoundingClientRect()
+    const rect = this.elem.querySelector('img').getBoundingClientRect()
     console.log(rect)
     this.height = rect.height
     this.width = rect.width
