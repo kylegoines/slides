@@ -68,10 +68,29 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    text-indent: -9999px;
+    padding: 0;
+    border: 0;
+    background: 0;
+    svg{
+        height: 50px;
+        display: block;
+    }
+    path{
+        fill: white;
+    }
 }
 
 .slideshow__arrow--next {
-    right: 0;
+    right: 10px;
+    svg{
+        // display: block;
+        transform: rotate(180deg);
+    }
+}
+
+.slideshow__arrow--prev {
+    left: 10px;
 }
 
 .slideshow__button {

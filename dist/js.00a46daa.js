@@ -334,6 +334,16 @@ function () {
 
 var _default = ProtoComponent;
 exports.default = _default;
+},{}],"js/data/arrow.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var arrow = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 100 125\" enable-background=\"new 0 0 100 100\" xml:space=\"preserve\"><path d=\"M75.924,46H33.582l11.321-11.321c1.562-1.562,1.562-4.095,0-5.657c-1.562-1.562-4.095-1.562-5.657,0L21.097,47.171  c0,0,0,0,0,0c-0.186,0.186-0.352,0.392-0.499,0.611c-0.06,0.089-0.1,0.187-0.152,0.279c-0.075,0.135-0.156,0.266-0.216,0.41  c-0.048,0.117-0.074,0.238-0.111,0.358c-0.04,0.129-0.089,0.255-0.116,0.39c-0.04,0.204-0.054,0.411-0.062,0.618  c-0.002,0.055-0.016,0.106-0.016,0.162c0,0.062,0.016,0.12,0.018,0.181c0.009,0.2,0.021,0.4,0.061,0.598  c0.028,0.143,0.079,0.275,0.122,0.412c0.035,0.112,0.059,0.226,0.104,0.335c0.064,0.155,0.15,0.299,0.233,0.443  c0.046,0.081,0.081,0.167,0.133,0.246c0.148,0.223,0.317,0.43,0.506,0.618l18.144,18.144c0.781,0.781,1.805,1.172,2.829,1.172  s2.047-0.391,2.829-1.172c1.562-1.562,1.562-4.095,0-5.656L33.583,54h42.341c2.209,0,4-1.791,4-4S78.133,46,75.924,46z\"/></svg>";
+var _default = arrow;
+exports.default = _default;
 },{}],"js/components/Slideshow.js":[function(require,module,exports) {
 "use strict";
 
@@ -345,6 +355,8 @@ exports.default = void 0;
 var _Slide = _interopRequireDefault(require("./Slide"));
 
 var _ProtoComponent2 = _interopRequireDefault(require("./ProtoComponent"));
+
+var _arrow = _interopRequireDefault(require("./../data/arrow"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -550,7 +562,7 @@ function (_ProtoComponent) {
     value: function _generateArrows() {
       var _this4 = this;
 
-      var arrowControls = "\n    <div class=\"slideshow__controls\">\n        <button class=\"slideshow__arrow slideshow__arrow--prev\">Prev</button>\n        <button class=\"slideshow__arrow slideshow__arrow--next\">next</button> \n    </div>";
+      var arrowControls = "\n    <div class=\"slideshow__controls\">\n        <button class=\"slideshow__arrow slideshow__arrow--prev\">Prev ".concat(_arrow.default, "</button>\n        <button class=\"slideshow__arrow slideshow__arrow--next\">next ").concat(_arrow.default, "</button> \n    </div>");
       this.elem.insertAdjacentHTML('beforeend', arrowControls);
       var prevArrow = this.elem.querySelector('.slideshow__arrow--prev');
       var nextArrow = this.elem.querySelector('.slideshow__arrow--next');
@@ -620,7 +632,7 @@ function (_ProtoComponent) {
 
 var _default = Slideshow;
 exports.default = _default;
-},{"./Slide":"js/components/Slide.js","./ProtoComponent":"js/components/ProtoComponent.js"}],"js/components/helperRender.js":[function(require,module,exports) {
+},{"./Slide":"js/components/Slide.js","./ProtoComponent":"js/components/ProtoComponent.js","./../data/arrow":"js/data/arrow.js"}],"js/components/helperRender.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -702,7 +714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64073" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56432" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

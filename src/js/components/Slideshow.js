@@ -1,5 +1,6 @@
 import Slide from './Slide'
 import ProtoComponent from './ProtoComponent'
+import arrow from './../data/arrow'
 
 class Slideshow extends ProtoComponent {
   constructor(elem, config = {}) {
@@ -117,8 +118,8 @@ class Slideshow extends ProtoComponent {
   _generateArrows() {
     const arrowControls = `
     <div class="slideshow__controls">
-        <button class="slideshow__arrow slideshow__arrow--prev">Prev</button>
-        <button class="slideshow__arrow slideshow__arrow--next">next</button> 
+        <button class="slideshow__arrow slideshow__arrow--prev">Prev ${arrow}</button>
+        <button class="slideshow__arrow slideshow__arrow--next">next ${arrow}</button> 
     </div>`
     this.elem.insertAdjacentHTML('beforeend', arrowControls)
     const prevArrow = this.elem.querySelector('.slideshow__arrow--prev')
