@@ -16,3 +16,10 @@ section{
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+a{
+    text-decoration: none;
+    &:hover{
+        color: red;
+    }
+}

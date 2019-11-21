@@ -2,11 +2,9 @@
     width: 100%;
     @include breakpoint('large') {
         display: flex;
-        background: yellow;
         flex-wrap: wrap;
         margin: 0 -2.5px;
     }
-    
 
     article{
         @include breakpoint('large') {
@@ -18,6 +16,15 @@
                 &:before{
                     padding-top: 0;
                 }
+            }
+
+            h3{
+                font-size: 30px;
+                line-height: 32px;
+            }
+
+            .article__info{
+                transform: translateY(0);
             }
         }
     }
@@ -35,5 +42,17 @@
         width: 50%;
         display: flex;
         flex-direction: column;
+    }
+}
+
+
+.article__imageContainer{
+    @include aspectRatio(4,2.5);
+    @include breakpoint('large'){
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
     }
 }

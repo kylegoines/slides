@@ -1,8 +1,11 @@
 .pageWrapper {
     max-width: 1700px;
     margin: 0 auto;
+    padding: 0 30px;
     @include breakpoint('large'){
         display: flex;
         width: 100%;
+        // padding: 0;
     }
+    
 }
